@@ -175,6 +175,26 @@
     .team-grid article, .next-grid article { background: var(--surface); padding: 15px; min-height: 116px; }
     .team-grid strong, .next-grid strong { display: block; color: var(--red); font-size: 16px; margin-bottom: 7px; }
     .team-grid p, .next-grid p { font-size: 13px; }
+    .people-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      margin: 24px 0 0;
+      padding: 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+      max-width: 780px;
+      box-shadow: var(--shadow);
+    }
+    .people-list li {
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 30px;
+      line-height: 1.05;
+      font-weight: 850;
+      padding: 22px 24px;
+    }
     .closing { background: var(--dark); color: #f8f5ec; }
     .closing p { color: rgba(248,245,236,.72); }
     .identity-note { margin-top: 20px; font-size: 13px; color: var(--muted); max-width: 920px; }
@@ -251,6 +271,8 @@
       .team-grid article, .next-grid article { min-height: 96px; padding: 12px; }
       .team-grid strong, .next-grid strong { font-size: 14px; margin-bottom: 5px; }
       .team-grid p, .next-grid p { font-size: 12px; }
+      .people-list { margin-top: 14px; max-width: 620px; }
+      .people-list li { font-size: 22px; padding: 16px 18px; }
       .identity-note { margin-top: 14px; font-size: 12px; }
       .deck-controls { bottom: 8px; right: 8px; padding: 6px; }
       .deck-button { min-width: 68px; height: 30px; font-size: 10px; }
@@ -264,6 +286,8 @@
       p { font-size: 14px; }
       .lead, .thesis { font-size: 16px; }
       .impact-grid, .story-grid, .appendix, .team-grid, .next-grid { grid-template-columns: 1fr; }
+      .people-list { grid-template-columns: 1fr; }
+      .people-list li { font-size: 22px; padding: 16px 18px; }
       .principles article { grid-template-columns: 1fr; }
       .deck-controls { right: 14px; left: 14px; bottom: 14px; justify-content: space-between; }
       .deck-button { min-width: 74px; padding: 0 10px; }
@@ -503,13 +527,12 @@
       <p class="eyebrow">New teammates</p>
       <h2>New teammates joining.</h2>
       <p class="lead">These names are included as newer additions to the team, not as per-person ownership or attribution for the past three months.</p>
-      <div class="team-grid">
-        <article><strong>Xi Zhao</strong></article>
-        <article><strong>Yuya</strong></article>
-        <article><strong>Arnab</strong></article>
-        <article><strong>Yash</strong></article>
-        <article><strong>India interns</strong></article>
-      </div>
+      <ul class="people-list" aria-label="new teammates">
+        <li>Xi Zhao</li>
+        <li>Yuya</li>
+        <li>Arnab</li>
+        <li>Yash</li>
+      </ul>
     </section>
 
     <section class="slide" id="next">
