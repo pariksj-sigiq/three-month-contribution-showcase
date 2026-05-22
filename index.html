@@ -30,7 +30,7 @@
     }
     a { color: inherit; text-decoration-color: rgba(15,118,101,.42); text-underline-offset: 3px; }
     .progress { position: fixed; inset: 0 0 auto 0; height: 4px; background: rgba(24,26,29,.08); z-index: 50; }
-    .progress i { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--green), var(--red), var(--blue)); }
+    .progress i { display: block; width: 0; height: 100%; background: var(--green); }
     .toc {
       position: fixed;
       z-index: 20;
@@ -66,8 +66,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(32,35,33,.96), rgba(32,35,33,.70), rgba(32,35,33,.88)),
-        repeating-linear-gradient(135deg, rgba(255,255,255,.10) 0 1px, transparent 1px 42px);
+        radial-gradient(circle at 22% 18%, rgba(15,118,101,.34), transparent 34%),
+        radial-gradient(circle at 78% 62%, rgba(201,79,50,.24), transparent 38%),
+        #202321;
       pointer-events: none;
     }
     .hero > * { position: relative; max-width: 1080px; }
@@ -85,7 +86,8 @@
     .hero-line {
       width: min(920px, 78vw);
       height: 8px;
-      background: linear-gradient(90deg, var(--green), var(--red), var(--yellow), var(--blue));
+      background: var(--green);
+      box-shadow: 240px 0 0 var(--red), 480px 0 0 var(--yellow), 720px 0 0 var(--blue);
       margin-top: 42px;
       transform-origin: left;
       animation: linein 1s ease both;
@@ -112,20 +114,20 @@
     }
     .number { font-size: 58px; line-height: .9; color: var(--red); font-weight: 900; }
     .thesis { font-size: 24px; line-height: 1.4; color: #353b3f; max-width: 880px; }
-    .leadership { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 18px; display: grid; gap: 10px; }
-    .leadership p { margin: 0; color: var(--ink); font-weight: 720; }
-    .evidence {
+    .operating-points { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 18px; display: grid; gap: 10px; }
+    .operating-points p { margin: 0; color: var(--ink); font-weight: 720; }
+    .proof {
       background: var(--surface);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       padding: 26px;
       display: grid;
-      gap: 24px;
+      gap: 18px;
     }
-    .evidence ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-    .evidence li a { display: grid; grid-template-columns: 96px minmax(0,1fr); gap: 10px; text-decoration: none; border-bottom: 1px solid rgba(24,26,29,.09); padding-bottom: 8px; }
-    .evidence li strong { color: var(--green); font-size: 13px; }
-    .evidence li span { color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .proof h3 { color: var(--green); margin-bottom: 0; }
+    .proof p { font-size: 17px; color: #30363a; }
+    .proof-lines { display: flex; flex-wrap: wrap; gap: 10px; }
+    .proof-lines span { border-top: 2px solid var(--red); padding-top: 8px; min-width: 128px; color: #30363a; font-size: 13px; font-weight: 800; }
     .story-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0,1fr));
@@ -136,8 +138,6 @@
     }
     .story-grid article { background: var(--surface); padding: 24px; min-height: 380px; }
     .story-grid article > strong { display: block; font-size: 40px; color: var(--blue); margin-bottom: 24px; }
-    .mini-refs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .mini-refs a { border: 1px solid var(--line); padding: 6px 8px; font-size: 12px; text-decoration: none; color: #30363a; background: rgba(255,255,255,.74); }
     .two-col { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 66px; align-items: start; }
     .principles { display: grid; gap: 22px; border-top: 1px solid var(--line); }
     .principles article { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 26px; padding-top: 22px; border-bottom: 1px solid var(--line); padding-bottom: 22px; }
@@ -173,7 +173,6 @@
       p { font-size: 16px; }
       .lead, .thesis { font-size: 20px; }
       .impact-grid, .story-grid, .appendix { grid-template-columns: 1fr; }
-      .evidence li a { grid-template-columns: 1fr; }
       .principles article { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -198,14 +197,14 @@
     <section class="slide hero" id="open">
       <p class="eyebrow">Strategic engineering impact</p>
       <h1>Five months of turning ambiguity into operating systems.</h1>
-      <p class="lead">A leadership readout for December 22, 2025 through May 22, 2026: less about lines of code, more about strategic bets moved, risk retired, operators enabled, and product surfaces made shippable.</p>
+      <p class="lead">December 22, 2025 through May 22, 2026: less about lines of code, more about strategic bets moved, risk retired, operators enabled, and product surfaces made shippable.</p>
       <div class="hero-line"></div>
     </section>
 
     <section class="slide" id="map">
       <p class="eyebrow">Executive summary</p>
       <h2>The strongest impact was creating leverage across product, platform, and operations.</h2>
-      <p class="lead">The evidence points to five leadership lanes: distribution, trust, operational leverage, learning quality, and AI/product operations.</p>
+      <p class="lead">The story centers on five operating lanes: distribution, trust, operator leverage, learning quality, and AI/product operations.</p>
       <div class="impact-grid">
         <article><strong>01</strong><h3>LMS distribution</h3><p>Clever/Canvas moved from a technical integration into a certifiable, supportable, flag-guarded product path.</p></article>
         <article><strong>02</strong><h3>Trust posture</h3><p>Critical and high-risk access-control gaps were framed, tracked, and closed across Tutor and Studio.</p></article>
@@ -222,13 +221,16 @@
                 <p class="eyebrow">Distribution and integrations</p>
                 <h2>Opened the path for LMS distribution, not just another integration.</h2>
                 <p class="thesis">Clever/Canvas work became a cross-system operating surface: data model, roster sync, assignment publishing, gradeback, LTI routing, diagnostics, certification evidence, and rollout controls.</p>
-                <div class="leadership">
-                  <p>Converted external certification ambiguity into an executable evidence plan.</p><p>Kept product rollout safe with dark launches, feature flags, and admin diagnostics.</p><p>Made the remaining blocker explicit: external Clever review, not hidden engineering work.</p>
+                <div class="operating-points">
+                  <p>Converted external certification ambiguity into an executable evidence plan.</p><p>Kept product rollout safe with dark launches, feature flags, and admin diagnostics.</p><p>Made the remaining blocker explicit: external partner review, not hidden engineering work.</p>
                 </div>
               </div>
-              <div class="evidence">
-                <div class="evidence-column"><h4>Linear</h4><ul><li><a href="https://linear.app/evertutor/issue/ENGG-1671/clever-readwrite-capabilities-for-lmss" target="_blank" rel="noreferrer"><strong>ENGG-1671</strong><span>Clever read/write capabilities for LMSs</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1884/verify-postman-collection-scopes-request-clever-cert-form" target="_blank" rel="noreferrer"><strong>ENGG-1884</strong><span>Clever scopes, Postman validation, certification form</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1915/execute-clever-lms-connect-sandbox-certification-run-and-submit" target="_blank" rel="noreferrer"><strong>ENGG-1915</strong><span>Clever sandbox certification evidence package</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1886/clever-lms-health-admin-dashboard" target="_blank" rel="noreferrer"><strong>ENGG-1886</strong><span>Clever LMS health admin dashboard</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1887/ops-apply-clever-lms-connect-migrations-env-vars-per-env" target="_blank" rel="noreferrer"><strong>ENGG-1887</strong><span>Clever migrations and env rollout baseline</span></a></li></ul></div>
-                <div class="evidence-column"><h4>GitHub</h4><ul><li><a href="https://github.com/sigiq/ai-tutor/pull/770" target="_blank" rel="noreferrer"><strong>ai-tutor#770</strong><span>Clever schema and mapping layer</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/771" target="_blank" rel="noreferrer"><strong>ai-tutor#771</strong><span>Clever roster sync</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/772" target="_blank" rel="noreferrer"><strong>ai-tutor#772</strong><span>Canvas publish/update/delete</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/860" target="_blank" rel="noreferrer"><strong>ai-tutor#860</strong><span>Submission sync and gradeback</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/862" target="_blank" rel="noreferrer"><strong>ai-tutor#862</strong><span>LMS diagnostics and cert evidence</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/863" target="_blank" rel="noreferrer"><strong>ai-tutor#863</strong><span>Teacher Canvas publish UX</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/881" target="_blank" rel="noreferrer"><strong>ai-tutor#881</strong><span>LTI launch context in session bootstrap</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/40" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#40</strong><span>Clever LMS health dashboard</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/44" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#44</strong><span>Clever rollout toggle</span></a></li></ul></div>
+              <div class="proof">
+                <h3>What changed</h3>
+                <p>A partner-facing integration path became a certifiable operating surface, with validation, diagnostics, rollout gates, and external review state made visible.</p>
+                <div class="proof-lines">
+                  <span>Certification path</span><span>Roster + assignment flows</span><span>Diagnostics</span><span>Rollout gates</span>
+                </div>
               </div>
             </section>
             
@@ -237,14 +239,17 @@
               <div class="bet-copy">
                 <p class="eyebrow">Trust and risk</p>
                 <h2>Raised the security bar across live tutoring and authoring surfaces.</h2>
-                <p class="thesis">The security work reads like leadership because it framed risk, cut across repos, and turned findings into closure: WebSocket ownership, IDORs, browser-safe flags, Studio auth, and lesson/session boundaries.</p>
-                <div class="leadership">
+                <p class="thesis">The security work framed risk, cut across product surfaces, and turned findings into closure: WebSocket ownership, IDORs, browser-safe flags, Studio auth, and lesson/session boundaries.</p>
+                <div class="operating-points">
                   <p>Prioritized critical and high-risk access-control gaps.</p><p>Moved from isolated fixes to a repeatable posture around ownership checks and safe client contracts.</p><p>Balanced remediation with release cadence rather than freezing delivery.</p>
                 </div>
               </div>
-              <div class="evidence">
-                <div class="evidence-column"><h4>Linear</h4><ul><li><a href="https://linear.app/evertutor/issue/ENGG-1707/critical-ai-tutor-websocket-session-endpoint-allows-unauthorized" target="_blank" rel="noreferrer"><strong>ENGG-1707</strong><span>Critical AI Tutor WebSocket auth gap</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1712/critical-et-studio-slide-object-endpoint-exposes-editor" target="_blank" rel="noreferrer"><strong>ENGG-1712</strong><span>Critical ET Studio slide object exposure</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1713/critical-et-studio-slide-generation-endpoints-allow-unauthenticated" target="_blank" rel="noreferrer"><strong>ENGG-1713</strong><span>Critical ET Studio slide generation exposure</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1805/whitelist-ai-tutor-user-config-into-browser-safe-client-flags" target="_blank" rel="noreferrer"><strong>ENGG-1805</strong><span>Browser-safe client flags</span></a></li></ul></div>
-                <div class="evidence-column"><h4>GitHub</h4><ul><li><a href="https://github.com/sigiq/ai-tutor/pull/754" target="_blank" rel="noreferrer"><strong>ai-tutor#754</strong><span>AI Tutor access-control vulnerabilities</span></a></li><li><a href="https://github.com/sigiq/et-studio/pull/1181" target="_blank" rel="noreferrer"><strong>et-studio#1181</strong><span>ET Studio access-control vulnerabilities</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/787" target="_blank" rel="noreferrer"><strong>ai-tutor#787</strong><span>Browser-safe client flags</span></a></li></ul></div>
+              <div class="proof">
+                <h3>What changed</h3>
+                <p>Risk moved from scattered findings into product boundaries: ownership checks, safe browser contracts, session hardening, and authenticated authoring paths.</p>
+                <div class="proof-lines">
+                  <span>Ownership checks</span><span>Safe client contract</span><span>Session boundaries</span><span>Authenticated authoring</span>
+                </div>
               </div>
             </section>
             
@@ -254,13 +259,16 @@
                 <p class="eyebrow">Operational leverage</p>
                 <h2>Turned internal support pain into operator-grade tools.</h2>
                 <p class="thesis">Internal dashboard work made complex systems observable and fixable by non-specialists: prompt/tutor filters, QA repair loops, completion analytics, Clever health, rollout toggles, and bulk lesson operations.</p>
-                <div class="leadership">
+                <div class="operating-points">
                   <p>Changed repeated manual diagnosis into admin surfaces.</p><p>Made QA feedback actionable across product, support, and engineering.</p><p>Protected future releases by putting health and toggles near operators.</p>
                 </div>
               </div>
-              <div class="evidence">
-                <div class="evidence-column"><h4>Linear</h4><ul><li><a href="https://linear.app/evertutor/issue/ENGG-1886/clever-lms-health-admin-dashboard" target="_blank" rel="noreferrer"><strong>ENGG-1886</strong><span>Clever LMS health admin dashboard</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1797/enable-all-disable-all-scratchpad-action-fails-with-error-and-labels" target="_blank" rel="noreferrer"><strong>ENGG-1797</strong><span>Scratchpad bulk update and CTA clarity</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1836/lesson-content-not-visible-after-cloning" target="_blank" rel="noreferrer"><strong>ENGG-1836</strong><span>Cloned lesson content visibility</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1837/lesson-preview-couldnt-scroll" target="_blank" rel="noreferrer"><strong>ENGG-1837</strong><span>Lesson preview scroll/image state</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1838/scratchpad-enabledisable-not-working-properly" target="_blank" rel="noreferrer"><strong>ENGG-1838</strong><span>Scratchpad enable/disable correctness</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1839/published-lesson-is-showing-as-draft" target="_blank" rel="noreferrer"><strong>ENGG-1839</strong><span>Published lesson showing draft</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1840/students-assignment-name-mismatch" target="_blank" rel="noreferrer"><strong>ENGG-1840</strong><span>Student assignment wording mismatch</span></a></li></ul></div>
-                <div class="evidence-column"><h4>GitHub</h4><ul><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/9" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#9</strong><span>Org/category filters for prompts and tutor versions</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/11" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#11</strong><span>Completion analytics backend</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/35" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#35</strong><span>Internal dashboard QA audit fixes</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/40" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#40</strong><span>Clever LMS health dashboard</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/44" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#44</strong><span>Clever rollout toggle</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/45" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#45</strong><span>Scratchpad bulk update fixes</span></a></li></ul></div>
+              <div class="proof">
+                <h3>What changed</h3>
+                <p>Internal support moved from one-off diagnosis into durable operator workflows for health, QA repair, rollout controls, and bulk actions.</p>
+                <div class="proof-lines">
+                  <span>Health surfaces</span><span>QA repair loops</span><span>Bulk operations</span><span>Support visibility</span>
+                </div>
               </div>
             </section>
             
@@ -270,13 +278,16 @@
                 <p class="eyebrow">Learning experience quality</p>
                 <h2>Improved the live learning loop where users actually feel product quality.</h2>
                 <p class="thesis">The work addressed student dashboards, connection state, websocket compression, transient LLM failures, audio/session stability, exit-ticket authoring, and real customer-visible image failures.</p>
-                <div class="leadership">
+                <div class="operating-points">
                   <p>Focused on reliability at the point of learning, not just backend neatness.</p><p>Connected authoring and runtime so assessment flows could survive real classrooms.</p><p>Kept learner-facing regressions close to product language and observable behavior.</p>
                 </div>
               </div>
-              <div class="evidence">
-                <div class="evidence-column"><h4>Linear</h4><ul><li><a href="https://linear.app/evertutor/issue/ENGG-811/student-dashboard-fe-be" target="_blank" rel="noreferrer"><strong>ENGG-811</strong><span>Student dashboard FE + BE</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-841/ws-data-compression-for-lower-network-footprint" target="_blank" rel="noreferrer"><strong>ENGG-841</strong><span>WebSocket data compression</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1847/handle-transient-llm-failures" target="_blank" rel="noreferrer"><strong>ENGG-1847</strong><span>Transient LLM failure handling</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-986/surveyjs-form-builder-integration-for-exit-ticket-questions" target="_blank" rel="noreferrer"><strong>ENGG-986</strong><span>SurveyJS exit-ticket authoring</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1833/gds-exit-ticket-images-arent-loading" target="_blank" rel="noreferrer"><strong>ENGG-1833</strong><span>GDS exit-ticket images</span></a></li></ul></div>
-                <div class="evidence-column"><h4>GitHub</h4><ul><li><a href="https://github.com/sigiq/ai-tutor/pull/374" target="_blank" rel="noreferrer"><strong>ai-tutor#374</strong><span>Student dashboard</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/404" target="_blank" rel="noreferrer"><strong>ai-tutor#404</strong><span>WebSocket data compression</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/452" target="_blank" rel="noreferrer"><strong>ai-tutor#452</strong><span>Connection state management</span></a></li><li><a href="https://github.com/sigiq/ai-tutor/pull/831" target="_blank" rel="noreferrer"><strong>ai-tutor#831</strong><span>Transient tutor LLM failures</span></a></li><li><a href="https://github.com/sigiq/et-studio/pull/1059" target="_blank" rel="noreferrer"><strong>et-studio#1059</strong><span>Studio exit-ticket implementation</span></a></li></ul></div>
+              <div class="proof">
+                <h3>What changed</h3>
+                <p>Live learning quality improved at the moments users feel most: connection state, compressed transport, resilient model calls, assessment authoring, and media reliability.</p>
+                <div class="proof-lines">
+                  <span>Runtime resilience</span><span>Assessment depth</span><span>Network efficiency</span><span>Media reliability</span>
+                </div>
               </div>
             </section>
             
@@ -286,13 +297,16 @@
                 <p class="eyebrow">AI/product operations</p>
                 <h2>Built scaffolding for faster AI-product iteration.</h2>
                 <p class="thesis">Prompt-config productionization, immutable QA versions, org/category filtering, export/import, AI coding infrastructure, and monorepo guardrails all reduce coordination cost for future work.</p>
-                <div class="leadership">
+                <div class="operating-points">
                   <p>Helped turn AI work from ad hoc changes into versioned operations.</p><p>Invested in engineering systems that make other engineers faster.</p><p>Kept architecture discussions anchored with guardrails rather than endless debate.</p>
                 </div>
               </div>
-              <div class="evidence">
-                <div class="evidence-column"><h4>Linear</h4><ul><li><a href="https://linear.app/evertutor/issue/ENGG-1385/setup-secure-vm-sandbox" target="_blank" rel="noreferrer"><strong>ENGG-1385</strong><span>Secure VM sandbox</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1526/mode-1-dev-desktop-user-controlled-cc-with-dsp" target="_blank" rel="noreferrer"><strong>ENGG-1526</strong><span>AI coding infra: dev desktop</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1528/mode-3-fargate-ephemeral-containers-fully-autonomous" target="_blank" rel="noreferrer"><strong>ENGG-1528</strong><span>AI coding infra: Fargate autonomous mode</span></a></li><li><a href="https://linear.app/evertutor/issue/ENGG-1899/phase-0-keep-the-ever-tutor-monorepo-vision-and-guardrails-current" target="_blank" rel="noreferrer"><strong>ENGG-1899</strong><span>Ever Tutor monorepo vision guardrails</span></a></li></ul></div>
-                <div class="evidence-column"><h4>GitHub</h4><ul><li><a href="https://github.com/sigiq/et-prompt-config/pull/1" target="_blank" rel="noreferrer"><strong>et-prompt-config#1</strong><span>Prompt-config production infra</span></a></li><li><a href="https://github.com/sigiq/et-prompt-config/pull/4" target="_blank" rel="noreferrer"><strong>et-prompt-config#4</strong><span>QA v4 immutable versions and export/import</span></a></li><li><a href="https://github.com/sigiq/et-prompt-config/pull/6" target="_blank" rel="noreferrer"><strong>et-prompt-config#6</strong><span>AI team QA v5</span></a></li><li><a href="https://github.com/sigiq/internal-et-dashboard/pull/9" target="_blank" rel="noreferrer"><strong>internal-et-dashboard#9</strong><span>Org/category filters for prompts and tutor versions</span></a></li></ul></div>
+              <div class="proof">
+                <h3>What changed</h3>
+                <p>AI product work became easier to change safely through versioned prompt operations, QA flow controls, architecture guardrails, and better developer environments.</p>
+                <div class="proof-lines">
+                  <span>Versioned prompts</span><span>Import/export control</span><span>AI-dev scaffolding</span><span>Architecture guardrails</span>
+                </div>
               </div>
             </section>
             
@@ -305,35 +319,30 @@
           <strong>Jan</strong>
           <h3>Stabilized the learning loop</h3>
           <p>Student dashboard, websocket compression, edge/data transfer thinking, audio and analytics debugging.</p>
-          <div class="mini-refs"><a href="https://linear.app/evertutor/issue/ENGG-811/student-dashboard-fe-be" target="_blank" rel="noreferrer">ENGG-811</a><a href="https://linear.app/evertutor/issue/ENGG-841/ws-data-compression-for-lower-network-footprint" target="_blank" rel="noreferrer">ENGG-841</a><a href="https://github.com/sigiq/ai-tutor/pull/374" target="_blank" rel="noreferrer">ai-tutor#374</a><a href="https://github.com/sigiq/ai-tutor/pull/404" target="_blank" rel="noreferrer">ai-tutor#404</a></div>
         </article>
         
         <article>
           <strong>Feb</strong>
           <h3>Expanded assessment authoring</h3>
           <p>SurveyJS exit-ticket authoring and Studio/runtime assessment flow work made assessment more product-native.</p>
-          <div class="mini-refs"><a href="https://linear.app/evertutor/issue/ENGG-986/surveyjs-form-builder-integration-for-exit-ticket-questions" target="_blank" rel="noreferrer">ENGG-986</a><a href="https://github.com/sigiq/et-studio/pull/1059" target="_blank" rel="noreferrer">et-studio#1059</a></div>
         </article>
         
         <article>
           <strong>Mar</strong>
           <h3>Hardened prompt and internal ops</h3>
           <p>Prompt-config production setup, org/category filters, completion analytics, and QA versioning shifted AI work into controlled operations.</p>
-          <div class="mini-refs"><a href="https://github.com/sigiq/et-prompt-config/pull/1" target="_blank" rel="noreferrer">et-prompt-config#1</a><a href="https://github.com/sigiq/internal-et-dashboard/pull/9" target="_blank" rel="noreferrer">internal-et-dashboard#9</a><a href="https://github.com/sigiq/internal-et-dashboard/pull/11" target="_blank" rel="noreferrer">internal-et-dashboard#11</a></div>
         </article>
         
         <article>
           <strong>Apr</strong>
           <h3>Moved into trust and security</h3>
           <p>Critical/high access-control work and browser-safe contracts reduced risk across AI Tutor and ET Studio.</p>
-          <div class="mini-refs"><a href="https://linear.app/evertutor/issue/ENGG-1707/critical-ai-tutor-websocket-session-endpoint-allows-unauthorized" target="_blank" rel="noreferrer">ENGG-1707</a><a href="https://linear.app/evertutor/issue/ENGG-1712/critical-et-studio-slide-object-endpoint-exposes-editor" target="_blank" rel="noreferrer">ENGG-1712</a><a href="https://linear.app/evertutor/issue/ENGG-1713/critical-et-studio-slide-generation-endpoints-allow-unauthenticated" target="_blank" rel="noreferrer">ENGG-1713</a><a href="https://linear.app/evertutor/issue/ENGG-1805/whitelist-ai-tutor-user-config-into-browser-safe-client-flags" target="_blank" rel="noreferrer">ENGG-1805</a><a href="https://github.com/sigiq/ai-tutor/pull/754" target="_blank" rel="noreferrer">ai-tutor#754</a><a href="https://github.com/sigiq/et-studio/pull/1181" target="_blank" rel="noreferrer">et-studio#1181</a></div>
         </article>
         
         <article>
           <strong>May</strong>
           <h3>Owned the LMS certification arc</h3>
           <p>Clever/Canvas became a complete operating surface with diagnostics, health, certification evidence, and rollout flags.</p>
-          <div class="mini-refs"><a href="https://linear.app/evertutor/issue/ENGG-1671/clever-readwrite-capabilities-for-lmss" target="_blank" rel="noreferrer">ENGG-1671</a><a href="https://linear.app/evertutor/issue/ENGG-1884/verify-postman-collection-scopes-request-clever-cert-form" target="_blank" rel="noreferrer">ENGG-1884</a><a href="https://linear.app/evertutor/issue/ENGG-1915/execute-clever-lms-connect-sandbox-certification-run-and-submit" target="_blank" rel="noreferrer">ENGG-1915</a><a href="https://github.com/sigiq/ai-tutor/pull/862" target="_blank" rel="noreferrer">ai-tutor#862</a><a href="https://github.com/sigiq/internal-et-dashboard/pull/40" target="_blank" rel="noreferrer">internal-et-dashboard#40</a></div>
         </article>
         </div>
     </section>
@@ -341,36 +350,36 @@
     <section class="slide" id="principles">
       <div class="two-col">
         <div>
-          <p class="eyebrow">Leadership pattern</p>
+          <p class="eyebrow">Operating pattern</p>
           <h2>How the impact showed up.</h2>
           <p class="lead">The recurring pattern is end-to-end ownership: clarify the problem, design the operating surface, ship the implementation, add observability, guard the rollout, and keep external dependencies visible.</p>
         </div>
         <div class="principles">
-          <article><strong>Frame</strong><p>Converted loose product and external-partner asks into scoped Linear trackers with acceptance, evidence, and explicit remaining blockers.</p></article>
+          <article><strong>Frame</strong><p>Converted ambiguous product and partner asks into scoped execution with acceptance criteria, evidence, and explicit remaining blockers.</p></article>
           <article><strong>De-risk</strong><p>Used feature flags, rollout toggles, dark defaults, diagnostics, and runbooks so strategic work could move without reckless exposure.</p></article>
           <article><strong>Enable</strong><p>Built admin surfaces and operational tools that let others inspect, repair, and ship without waiting on direct code spelunking.</p></article>
-          <article><strong>Close</strong><p>Kept release motion alive across multiple repos while still handling security, QA, and certification paths.</p></article>
+          <article><strong>Close</strong><p>Kept release motion alive across multiple product surfaces while still handling security, QA, and certification paths.</p></article>
         </div>
       </div>
     </section>
 
     <section class="slide" id="appendix">
-      <p class="eyebrow">Evidence appendix</p>
-      <h2>Stats are supporting context, not the headline.</h2>
+      <p class="eyebrow">Review basis</p>
+      <h2>The presentation is outcome-first by design.</h2>
       <div class="appendix">
-        <div><strong>560</strong><p>author-matched commits</p></div>
-        <div><strong>128</strong><p>GitHub PRs authored by pariksj-sigiq</p></div>
-        <div><strong>110</strong><p>merged PRs</p></div>
-        <div><strong>4</strong><p>repos scanned</p></div>
+        <div><strong>5</strong><p>months reviewed across product, platform, and operations work.</p></div>
+        <div><strong>4</strong><p>major product areas synthesized into a single narrative.</p></div>
+        <div><strong>5</strong><p>strategic lanes used to explain durable impact.</p></div>
+        <div><strong>0</strong><p>raw work-system links or identifiers exposed in the public page.</p></div>
       </div>
-      <p class="identity-note">GitHub filter used only: pariksj-sigiq, pariksj-sigiq@users.noreply.github.com, 224842983+pariksj-sigiq@users.noreply.github.com. Observed matching commit author: pariksj-sigiq &lt;parikshit.joon@sigiq.ai&gt;. Linear scope: assigned issues created or updated in the window, plus detailed strategic trackers. Linear issue counts are used directionally because the API view included created/updated slices and split/canceled trackers.</p>
+      <p class="identity-note">The underlying review included delivery records, review discussion, and work-tracking context. This public version keeps the trail private and presents only synthesized outcomes.</p>
     </section>
 
     <section class="slide closing" id="close">
       <p class="eyebrow">Closing readout</p>
       <h2>The story is strategic ownership, not just delivery volume.</h2>
       <p class="lead">Over five months, the strongest impact was making important systems more shippable: LMS distribution became certifiable, security risk became tracked closure, internal ops became visible, live learning became more resilient, and AI/product work got more structured.</p>
-      <p class="identity-note">Updated with Linear evidence on May 22, 2026. Public GitHub Pages URL contains only this standalone presentation HTML; no product repository source or raw Linear screenshots are embedded.</p>
+      <p class="identity-note">Updated on May 22, 2026. This standalone page shows synthesized outcomes only; raw work-system links and identifiers are intentionally omitted.</p>
     </section>
   </main>
   <script>
