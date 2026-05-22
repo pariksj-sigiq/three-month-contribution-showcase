@@ -20,7 +20,7 @@
       --shadow: 0 28px 80px rgba(24,26,29,.11);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html, body { height: 100%; overflow: hidden; }
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -29,11 +29,12 @@
       letter-spacing: 0;
     }
     a { color: inherit; text-decoration-color: rgba(15,118,101,.42); text-underline-offset: 3px; }
-    .progress { position: fixed; inset: 0 0 auto 0; height: 4px; background: rgba(24,26,29,.08); z-index: 50; }
+    main { position: relative; width: 100%; height: 100svh; overflow: hidden; }
+    .progress { position: fixed; inset: 0 0 auto 0; height: 4px; background: rgba(24,26,29,.08); z-index: 70; }
     .progress i { display: block; width: 0; height: 100%; background: var(--green); }
     .toc {
       position: fixed;
-      z-index: 20;
+      z-index: 50;
       right: 26px;
       top: 28px;
       display: flex;
@@ -42,19 +43,27 @@
       max-width: 520px;
       justify-content: flex-end;
     }
-    .toc a { text-decoration: none; color: var(--muted); font-size: 12px; font-weight: 750; border: 1px solid var(--line); background: rgba(247,245,239,.86); padding: 8px 10px; }
+    .toc button { appearance: none; color: var(--muted); font-size: 12px; font-weight: 750; border: 1px solid var(--line); background: rgba(247,245,239,.88); padding: 8px 10px; cursor: pointer; }
+    .toc button.is-current { color: var(--ink); border-color: rgba(15,118,101,.46); background: rgba(255,255,255,.94); }
     .slide {
-      min-height: 100svh;
-      padding: 92px clamp(26px, 7vw, 112px);
-      border-bottom: 1px solid var(--line);
+      position: absolute;
+      inset: 0;
+      height: 100svh;
+      padding: 76px clamp(26px, 7vw, 112px) 112px;
+      overflow-y: auto;
+      scrollbar-gutter: stable;
       display: flex;
       flex-direction: column;
       justify-content: center;
       opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .7s ease, transform .7s ease;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(34px);
+      transition: opacity .42s ease, transform .42s ease, visibility .42s ease;
     }
-    .slide.is-visible { opacity: 1; transform: none; }
+    .slide.is-active { opacity: 1; visibility: visible; pointer-events: auto; transform: none; z-index: 1; }
+    .slide.is-before { transform: translateX(-34px); }
+    .slide.is-after { transform: translateX(34px); }
     .hero {
       position: relative;
       overflow: hidden;
@@ -156,6 +165,35 @@
     .closing p { color: rgba(248,245,236,.72); }
     .identity-note { margin-top: 28px; font-size: 14px; color: var(--muted); max-width: 960px; }
     .closing .identity-note { color: rgba(248,245,236,.58); }
+    .deck-controls {
+      position: fixed;
+      z-index: 60;
+      right: 26px;
+      bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: rgba(247,245,239,.9);
+      box-shadow: 0 18px 48px rgba(24,26,29,.13);
+      backdrop-filter: blur(14px);
+    }
+    .deck-button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      min-width: 96px;
+      height: 42px;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .deck-button.is-primary { background: var(--dark); color: #f8f5ec; border-color: var(--dark); }
+    .deck-button:disabled { opacity: .42; cursor: default; }
+    .slide-count { min-width: 52px; text-align: center; color: var(--muted); font-size: 13px; font-weight: 850; }
     @media (max-width: 1180px) {
       .toc { display: none; }
       h1 { font-size: 84px; }
@@ -166,7 +204,7 @@
       .appendix { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
     @media (max-width: 720px) {
-      .slide { min-height: auto; padding: 64px 20px; }
+      .slide { height: 100svh; padding: 62px 20px 112px; justify-content: flex-start; }
       h1 { font-size: 56px; }
       h2 { font-size: 38px; }
       h3 { font-size: 22px; }
@@ -174,24 +212,29 @@
       .lead, .thesis { font-size: 20px; }
       .impact-grid, .story-grid, .appendix { grid-template-columns: 1fr; }
       .principles article { grid-template-columns: 1fr; }
+      .deck-controls { right: 14px; left: 14px; bottom: 14px; justify-content: space-between; }
+      .deck-button { min-width: 86px; padding: 0 12px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-      .slide { opacity: 1; transform: none; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .slide { transform: none; }
     }
   </style>
 </head>
 <body>
   <div class="progress"><i></i></div>
   <nav class="toc" aria-label="sections">
-    <a href="#open">Thesis</a>
-    <a href="#map">Impact Map</a>
-    <a href="#bet-1">LMS</a>
-    <a href="#bet-2">Trust</a>
-    <a href="#bet-3">Ops</a>
-    <a href="#bet-4">Learning</a>
-    <a href="#bet-5">AI Ops</a>
-    <a href="#close">Close</a>
+    <button type="button" data-slide-target="open">Thesis</button>
+    <button type="button" data-slide-target="map">Impact Map</button>
+    <button type="button" data-slide-target="bet-1">LMS</button>
+    <button type="button" data-slide-target="bet-2">Trust</button>
+    <button type="button" data-slide-target="bet-3">Ops</button>
+    <button type="button" data-slide-target="bet-4">Learning</button>
+    <button type="button" data-slide-target="bet-5">AI Ops</button>
+    <button type="button" data-slide-target="timeline">Timeline</button>
+    <button type="button" data-slide-target="principles">Pattern</button>
+    <button type="button" data-slide-target="appendix">Basis</button>
+    <button type="button" data-slide-target="close">Close</button>
   </nav>
   <main>
     <section class="slide hero" id="open">
@@ -376,20 +419,81 @@
       <p class="identity-note">Updated on May 22, 2026. This standalone page shows synthesized outcomes only; raw work-system links and identifiers are intentionally omitted.</p>
     </section>
   </main>
+  <div class="deck-controls" aria-label="slide controls">
+    <button class="deck-button" id="prevSlide" type="button">Previous</button>
+    <span class="slide-count" id="slideCount">1 / 11</span>
+    <button class="deck-button is-primary" id="nextSlide" type="button">Next</button>
+  </div>
   <script>
     const slides = [...document.querySelectorAll('.slide')];
     const progress = document.querySelector('.progress i');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    const prevButton = document.getElementById('prevSlide');
+    const nextButton = document.getElementById('nextSlide');
+    const slideCount = document.getElementById('slideCount');
+    const jumpButtons = [...document.querySelectorAll('[data-slide-target]')];
+    let current = Math.max(0, slides.findIndex((slide) => `#${slide.id}` === window.location.hash));
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const clamp = (value) => Math.min(Math.max(value, 0), slides.length - 1);
+
+    const setSlide = (index, updateHash = true) => {
+      current = clamp(index);
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === current;
+        slide.classList.toggle('is-active', active);
+        slide.classList.toggle('is-before', slideIndex < current);
+        slide.classList.toggle('is-after', slideIndex > current);
+        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        if (active) slide.scrollTop = 0;
       });
-    }, { threshold: 0.16 });
-    slides.forEach((slide) => io.observe(slide));
-    slides[0]?.classList.add('is-visible');
-    window.addEventListener('scroll', () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`;
+      jumpButtons.forEach((button) => {
+        button.classList.toggle('is-current', button.dataset.slideTarget === slides[current].id);
+      });
+      progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+      slideCount.textContent = `${current + 1} / ${slides.length}`;
+      prevButton.disabled = current === 0;
+      nextButton.disabled = current === slides.length - 1;
+      if (updateHash) history.replaceState(null, '', `#${slides[current].id}`);
+    };
+
+    prevButton.addEventListener('click', () => setSlide(current - 1));
+    nextButton.addEventListener('click', () => setSlide(current + 1));
+    jumpButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = slides.findIndex((slide) => slide.id === button.dataset.slideTarget);
+        if (target >= 0) setSlide(target);
+      });
+    });
+    window.addEventListener('keydown', (event) => {
+      if (event.target.closest('button, input, textarea, select')) return;
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
+        event.preventDefault();
+        setSlide(current + 1);
+      }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) {
+        event.preventDefault();
+        setSlide(current - 1);
+      }
+      if (event.key === 'Home') setSlide(0);
+      if (event.key === 'End') setSlide(slides.length - 1);
+    });
+    window.addEventListener('hashchange', () => {
+      const target = slides.findIndex((slide) => `#${slide.id}` === window.location.hash);
+      if (target >= 0) setSlide(target, false);
+    });
+    window.addEventListener('pointerdown', (event) => {
+      touchStartX = event.clientX;
+      touchStartY = event.clientY;
     }, { passive: true });
+    window.addEventListener('pointerup', (event) => {
+      const dx = event.clientX - touchStartX;
+      const dy = event.clientY - touchStartY;
+      if (Math.abs(dx) > 64 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+        setSlide(current + (dx < 0 ? 1 : -1));
+      }
+    }, { passive: true });
+    setSlide(current, Boolean(window.location.hash));
   </script>
 </body>
 </html>
