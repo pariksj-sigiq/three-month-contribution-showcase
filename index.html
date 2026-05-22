@@ -35,13 +35,13 @@
     .toc {
       position: fixed;
       z-index: 50;
-      right: 26px;
-      top: 28px;
+      left: 26px;
+      top: 24px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      max-width: 520px;
-      justify-content: flex-end;
+      max-width: 860px;
+      justify-content: flex-start;
     }
     .toc button { appearance: none; color: var(--muted); font-size: 12px; font-weight: 750; border: 1px solid var(--line); background: rgba(247,245,239,.88); padding: 8px 10px; cursor: pointer; }
     .toc button.is-current { color: var(--ink); border-color: rgba(15,118,101,.46); background: rgba(255,255,255,.94); }
@@ -123,8 +123,11 @@
     }
     .number { font-size: 58px; line-height: .9; color: var(--red); font-weight: 900; }
     .thesis { font-size: 24px; line-height: 1.4; color: #353b3f; max-width: 880px; }
+    .business-line { max-width: 900px; margin-bottom: 18px; color: var(--green); font-size: 20px; line-height: 1.35; font-weight: 850; }
     .operating-points { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 18px; display: grid; gap: 10px; }
     .operating-points p { margin: 0; color: var(--ink); font-weight: 720; }
+    .credit-line { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+    .credit-line strong { color: var(--red); }
     .proof {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -161,6 +164,17 @@
     }
     .appendix div { background: var(--surface); padding: 24px; }
     .appendix strong { display: block; font-size: 42px; color: var(--green); }
+    .team-grid, .next-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 34px;
+    }
+    .team-grid article, .next-grid article { background: var(--surface); padding: 24px; min-height: 190px; }
+    .team-grid strong, .next-grid strong { display: block; color: var(--red); font-size: 20px; margin-bottom: 14px; }
+    .team-grid p, .next-grid p { font-size: 16px; }
     .closing { background: var(--dark); color: #f8f5ec; }
     .closing p { color: rgba(248,245,236,.72); }
     .identity-note { margin-top: 28px; font-size: 14px; color: var(--muted); max-width: 960px; }
@@ -198,7 +212,7 @@
       .toc { display: none; }
       h1 { font-size: 84px; }
       h2 { font-size: 50px; }
-      .impact-grid, .story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .impact-grid, .story-grid, .team-grid, .next-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .bet, .two-col { grid-template-columns: 1fr; }
       .number { display: none; }
       .appendix { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -210,7 +224,7 @@
       h3 { font-size: 22px; }
       p { font-size: 16px; }
       .lead, .thesis { font-size: 20px; }
-      .impact-grid, .story-grid, .appendix { grid-template-columns: 1fr; }
+      .impact-grid, .story-grid, .appendix, .team-grid, .next-grid { grid-template-columns: 1fr; }
       .principles article { grid-template-columns: 1fr; }
       .deck-controls { right: 14px; left: 14px; bottom: 14px; justify-content: space-between; }
       .deck-button { min-width: 86px; padding: 0 12px; }
@@ -225,6 +239,7 @@
   <div class="progress"><i></i></div>
   <nav class="toc" aria-label="sections">
     <button type="button" data-slide-target="open">Thesis</button>
+    <button type="button" data-slide-target="principles">Pattern</button>
     <button type="button" data-slide-target="map">Impact Map</button>
     <button type="button" data-slide-target="bet-1">LMS</button>
     <button type="button" data-slide-target="bet-2">Trust</button>
@@ -233,16 +248,32 @@
     <button type="button" data-slide-target="bet-5">AI Ops</button>
     <button type="button" data-slide-target="bet-6">Productivity</button>
     <button type="button" data-slide-target="timeline">Timeline</button>
-    <button type="button" data-slide-target="principles">Pattern</button>
-    <button type="button" data-slide-target="appendix">Basis</button>
+    <button type="button" data-slide-target="team">Team</button>
+    <button type="button" data-slide-target="next">Next</button>
     <button type="button" data-slide-target="close">Close</button>
   </nav>
   <main>
     <section class="slide hero" id="open">
       <p class="eyebrow">Strategic engineering impact</p>
-      <h1>Three months of turning ambiguity into operating systems.</h1>
-      <p class="lead">February 22, 2026 through May 22, 2026: a concentrated push across partner readiness, trust posture, internal operations, learning quality, and AI-product systems.</p>
+      <h1>Strategic ownership across the team.</h1>
+      <p class="lead">Not just delivery volume. February 22 through May 22 was about turning ambiguity into systems the company can sell, support, trust, and extend.</p>
       <div class="hero-line"></div>
+    </section>
+
+    <section class="slide" id="principles">
+      <div class="two-col">
+        <div>
+          <p class="eyebrow">Operating pattern</p>
+          <h2>How I framed the work, and how we shipped it.</h2>
+          <p class="lead">I framed the last three months around six company-level bets. We moved them by making ownership visible, translating engineering into company language, and giving the work to teams who could carry it.</p>
+        </div>
+        <div class="principles">
+          <article><strong>Frame</strong><p>I turned ambiguous product, partner, and platform asks into lanes the company could understand.</p></article>
+          <article><strong>De-risk</strong><p>We used flags, diagnostics, dark defaults, and runbooks so important work could move without reckless exposure.</p></article>
+          <article><strong>Translate</strong><p>We made engineering legible to growth, support, product, and the CEO so the story could travel outside engineering.</p></article>
+          <article><strong>Credit</strong><p>The work landed because people across the team owned real pieces; the deck should make that visible.</p></article>
+        </div>
+      </div>
     </section>
 
     <section class="slide" id="map">
@@ -265,10 +296,12 @@
               <div class="bet-copy">
                 <p class="eyebrow">LMS readiness</p>
                 <h2>Converted partner-distribution work into an operating surface.</h2>
+                <p class="business-line">We are now much closer to being sold into Clever/Canvas districts.</p>
                 <p class="thesis">Clever/Canvas work became a cross-system operating surface: data model, roster sync, assignment publishing, gradeback, LTI routing, diagnostics, certification evidence, and rollout controls.</p>
                 <div class="operating-points">
-                  <p>Turned certification ambiguity into executable validation and evidence.</p><p>Kept rollout controlled with dark launches, feature flags, and admin diagnostics.</p><p>Made the remaining blocker explicit: external partner review, not hidden engineering work.</p>
+                  <p>We turned certification ambiguity into executable validation and evidence.</p><p>We kept rollout controlled with dark launches, feature flags, and admin diagnostics.</p><p>I made the remaining blocker explicit: external partner review, not hidden engineering work.</p>
                 </div>
+                <p class="credit-line"><strong>Built with</strong> Xi Zhao, Yuya, and the LMS implementation crew.</p>
               </div>
               <div class="proof">
                 <h3>What changed</h3>
@@ -284,10 +317,12 @@
               <div class="bet-copy">
                 <p class="eyebrow">Trust and access control</p>
                 <h2>Moved critical risk from finding to closure.</h2>
+                <p class="business-line">Security should not be the reason an enterprise conversation stalls.</p>
                 <p class="thesis">The security work framed risk, cut across product surfaces, and turned findings into closure: WebSocket ownership, IDORs, browser-safe flags, Studio auth, and lesson/session boundaries.</p>
                 <div class="operating-points">
-                  <p>Prioritized critical and high-risk access-control gaps.</p><p>Moved from isolated fixes to a repeatable posture around ownership checks and safe client contracts.</p><p>Balanced remediation with release cadence rather than freezing delivery.</p>
+                  <p>We prioritized critical and high-risk access-control gaps.</p><p>We moved from isolated fixes to a repeatable posture around ownership checks and safe client contracts.</p><p>I kept remediation moving without freezing the release cadence.</p>
                 </div>
+                <p class="credit-line"><strong>Built with</strong> Tutor and Studio surface owners, with security review partnership.</p>
               </div>
               <div class="proof">
                 <h3>What changed</h3>
@@ -303,10 +338,12 @@
               <div class="bet-copy">
                 <p class="eyebrow">Operational leverage</p>
                 <h2>Turned internal support pain into operator-grade tools.</h2>
+                <p class="business-line">Support and growth can fix more problems without waiting on engineering.</p>
                 <p class="thesis">Internal dashboard work made complex systems observable and fixable by non-specialists: prompt/tutor filters, QA repair loops, completion analytics, partner health, rollout toggles, and bulk lesson operations.</p>
                 <div class="operating-points">
-                  <p>Changed repeated manual diagnosis into admin surfaces.</p><p>Made QA feedback actionable across product, support, and engineering.</p><p>Protected future releases by putting health and toggles near operators.</p>
+                  <p>We changed repeated manual diagnosis into admin surfaces.</p><p>We made QA feedback actionable across product, support, and engineering.</p><p>I pushed health and toggles closer to the people operating the product.</p>
                 </div>
+                <p class="credit-line"><strong>Built with</strong> Arnab, Yash, and the India intern execution track.</p>
               </div>
               <div class="proof">
                 <h3>What changed</h3>
@@ -322,10 +359,12 @@
               <div class="bet-copy">
                 <p class="eyebrow">Learning experience quality</p>
                 <h2>Improved the live learning loop where users actually feel product quality.</h2>
+                <p class="business-line">The product holds up in real classrooms, not just demos.</p>
                 <p class="thesis">The work addressed mic permissions, audio hangs, visual transcription and TTS fallback, transient model failures, assessment flows, and customer-visible media issues.</p>
                 <div class="operating-points">
-                  <p>Focused on reliability at the point of learning, not just backend neatness.</p><p>Connected authoring and runtime so assessment flows could survive real classrooms.</p><p>Kept learner-facing regressions close to product language and observable behavior.</p>
+                  <p>We focused on reliability at the point of learning, not just backend neatness.</p><p>We connected authoring and runtime so assessment flows could survive real classrooms.</p><p>I kept learner-facing regressions tied to product language and observable behavior.</p>
                 </div>
+                <p class="credit-line"><strong>Built with</strong> Tutor runtime, Studio authoring, QA, and product partners.</p>
               </div>
               <div class="proof">
                 <h3>What changed</h3>
@@ -341,10 +380,12 @@
               <div class="bet-copy">
                 <p class="eyebrow">AI/product operations</p>
                 <h2>Built scaffolding for faster AI-product iteration.</h2>
+                <p class="business-line">We can change AI behavior faster without turning every change into a risky release.</p>
                 <p class="thesis">Prompt-config productionization, immutable QA versions, org/category filtering, export/import, AI coding infrastructure, and monorepo guardrails all reduce coordination cost for future work.</p>
                 <div class="operating-points">
-                  <p>Helped turn AI work from ad hoc changes into versioned operations.</p><p>Invested in engineering systems that make other engineers faster.</p><p>Kept architecture discussions anchored with guardrails rather than endless debate.</p>
+                  <p>We helped turn AI work from ad hoc changes into versioned operations.</p><p>We invested in engineering systems that make other engineers faster.</p><p>I kept architecture discussions anchored with guardrails rather than endless debate.</p>
                 </div>
+                <p class="credit-line"><strong>Built with</strong> Prompt/config contributors, internal dashboard owners, and AI product partners.</p>
               </div>
               <div class="proof">
                 <h3>What changed</h3>
@@ -360,10 +401,12 @@
               <div class="bet-copy">
                 <p class="eyebrow">Engineering productivity</p>
                 <h2>Turned AI-assisted development into a repeatable team capability.</h2>
+                <p class="business-line">New engineers should be able to become productive in their first week.</p>
                 <p class="thesis">sigiq-dev mattered because it changed the operating model: instead of each engineer hand-rolling cloud desktops and agent workflows, the team got one governed path for setup, sync, secure credentials, interactive work, isolated runs, observability, and shared services.</p>
                 <div class="operating-points">
-                  <p>Converted individual setup burden into a team-level productivity system.</p><p>Reduced variance in AI-assisted development with one supported path.</p><p>Created the base layer for faster, safer agent work across shared engineering environments.</p>
+                  <p>We converted individual setup burden into a team-level productivity system.</p><p>We reduced variance in AI-assisted development with one supported path.</p><p>I framed sigiq-dev as a productivity bet, not just another internal tool.</p>
                 </div>
+                <p class="credit-line"><strong>Built with</strong> Xi Zhao, Yuya, Arnab, Yash, and the India intern execution track.</p>
               </div>
               <div class="proof">
                 <h3>What changed</h3>
@@ -417,44 +460,41 @@
         </div>
     </section>
 
-    <section class="slide" id="principles">
-      <div class="two-col">
-        <div>
-          <p class="eyebrow">Operating pattern</p>
-          <h2>How the impact showed up.</h2>
-          <p class="lead">The recurring pattern is end-to-end ownership: clarify the problem, design the operating surface, ship the implementation, add observability, guard the rollout, and keep external dependencies visible.</p>
-        </div>
-        <div class="principles">
-          <article><strong>Frame</strong><p>Converted ambiguous product and partner asks into scoped execution with acceptance criteria, evidence, and explicit remaining blockers.</p></article>
-          <article><strong>De-risk</strong><p>Used feature flags, rollout toggles, dark defaults, diagnostics, and runbooks so strategic work could move without reckless exposure.</p></article>
-          <article><strong>Enable</strong><p>Built admin surfaces and operational tools that let others inspect, repair, and ship without waiting on direct code spelunking.</p></article>
-          <article><strong>Close</strong><p>Kept release motion alive across multiple product surfaces while still handling security, QA, and certification paths.</p></article>
-        </div>
+    <section class="slide" id="team">
+      <p class="eyebrow">Team credit</p>
+      <h2>The team that shipped this.</h2>
+      <p class="lead">My role was to frame the bets, keep dependencies visible, and make the work legible across engineering, growth, product, and the CEO. The shipping happened because teammates carried real pieces.</p>
+      <div class="team-grid">
+        <article><strong>Xi Zhao</strong><p>US engineering partner across AI-development and platform workflows.</p></article>
+        <article><strong>Yuya</strong><p>US engineering partner across delivery and platform execution.</p></article>
+        <article><strong>Arnab</strong><p>India execution lead and mentor for the intern implementation track.</p></article>
+        <article><strong>Yash</strong><p>India execution lead and mentor for the intern implementation track.</p></article>
+        <article><strong>India interns</strong><p>Two contributors working under Arnab and Yash who helped carry implementation work.</p></article>
+        <article><strong>Product, support, QA, and growth partners</strong><p>The work became useful because the feedback loop included the people who sell, support, test, and explain it.</p></article>
       </div>
     </section>
 
-    <section class="slide" id="appendix">
-      <p class="eyebrow">Review basis</p>
-      <h2>The presentation is outcome-first by design.</h2>
-      <div class="appendix">
-        <div><strong>3</strong><p>months reviewed across product, platform, and operations work.</p></div>
-        <div><strong>5</strong><p>major product and engineering-platform areas synthesized into a single narrative.</p></div>
-        <div><strong>6</strong><p>strategic lanes used to explain durable impact.</p></div>
-        <div><strong>0</strong><p>raw work-system links or identifiers exposed in the public page.</p></div>
+    <section class="slide" id="next">
+      <p class="eyebrow">Next 90 days</p>
+      <h2>Where I think we point the system next.</h2>
+      <p class="lead">These are the bets I would put in front of the team next; feedback should tighten them, not wait for perfect metrics.</p>
+      <div class="next-grid">
+        <article><strong>Sellable LMS readiness</strong><p>Close partner review, keep demos honest, and give growth/support a clean rollout story they can repeat.</p></article>
+        <article><strong>Measurable reliability</strong><p>Turn trust, classroom quality, and operator health into visible signals the company can use before customers escalate.</p></article>
+        <article><strong>Default productivity path</strong><p>Make sigiq-dev the standard route for AI-assisted development, onboarding, sandbox runs, and shared engineering workflows.</p></article>
       </div>
-      <p class="identity-note">The underlying review included delivery records, review discussion, and planning context. This public version keeps the trail private and presents only synthesized outcomes.</p>
     </section>
 
     <section class="slide closing" id="close">
       <p class="eyebrow">Closing readout</p>
-      <h2>The story is strategic ownership, not just delivery volume.</h2>
-      <p class="lead">Over three months, the strongest impact was making important systems more shippable: LMS distribution became certifiable, security risk moved to closure, internal ops became visible, live learning became more resilient, AI/product work got more structured, and engineering productivity became a system rather than individual heroics.</p>
+      <h2>Strategic ownership across the team.</h2>
+      <p class="lead">I am proudest of the pattern: we translated ambiguity into systems other people can sell, support, trust, use, and extend. The next version is making those systems measurable and repeatable across the company.</p>
       <p class="identity-note">Updated on May 22, 2026. This standalone page shows synthesized outcomes only; raw work-system links and identifiers are intentionally omitted.</p>
     </section>
   </main>
   <div class="deck-controls" aria-label="slide controls">
     <button class="deck-button" id="prevSlide" type="button">Previous</button>
-    <span class="slide-count" id="slideCount">1 / 12</span>
+    <span class="slide-count" id="slideCount">1 / 13</span>
     <button class="deck-button is-primary" id="nextSlide" type="button">Next</button>
   </div>
   <script>
