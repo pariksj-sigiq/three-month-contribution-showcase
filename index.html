@@ -104,14 +104,14 @@
     @keyframes linein { from { transform: scaleX(.08); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
     .impact-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       margin-top: 42px;
     }
-    .impact-grid article { background: var(--surface); padding: 28px; min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; }
+    .impact-grid article { background: var(--surface); padding: 24px; min-height: 210px; display: flex; flex-direction: column; justify-content: space-between; }
     .impact-grid strong { display: block; font-size: 42px; color: var(--red); margin-bottom: 18px; }
     .impact-grid p { font-size: 16px; }
     .bet {
@@ -139,13 +139,13 @@
     .proof-lines span { border-top: 2px solid var(--red); padding-top: 8px; min-width: 128px; color: #30363a; font-size: 13px; font-weight: 800; }
     .story-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
       margin-top: 36px;
     }
-    .story-grid article { background: var(--surface); padding: 24px; min-height: 380px; }
+    .story-grid article { background: var(--surface); padding: 22px; min-height: 245px; }
     .story-grid article > strong { display: block; font-size: 40px; color: var(--blue); margin-bottom: 24px; }
     .two-col { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 66px; align-items: start; }
     .principles { display: grid; gap: 22px; border-top: 1px solid var(--line); }
@@ -231,6 +231,7 @@
     <button type="button" data-slide-target="bet-3">Ops</button>
     <button type="button" data-slide-target="bet-4">Learning</button>
     <button type="button" data-slide-target="bet-5">AI Ops</button>
+    <button type="button" data-slide-target="bet-6">Dev Platform</button>
     <button type="button" data-slide-target="timeline">Timeline</button>
     <button type="button" data-slide-target="principles">Pattern</button>
     <button type="button" data-slide-target="appendix">Basis</button>
@@ -247,13 +248,14 @@
     <section class="slide" id="map">
       <p class="eyebrow">Executive summary</p>
       <h2>The strongest impact was compressing strategy into shippable operating surfaces.</h2>
-      <p class="lead">The story centers on five operating lanes: partner readiness, trust closure, operator leverage, learning quality, and AI/product operations.</p>
+      <p class="lead">The story centers on six operating lanes: partner readiness, trust closure, operator leverage, learning quality, AI/product operations, and internal AI engineering platform work.</p>
       <div class="impact-grid">
         <article><strong>01</strong><h3>LMS readiness</h3><p>Clever/Canvas moved from a technical integration into a certifiable, supportable, flag-guarded product path.</p></article>
         <article><strong>02</strong><h3>Trust closure</h3><p>Critical and high-risk access-control gaps were framed, resolved, and folded back into release motion.</p></article>
         <article><strong>03</strong><h3>Operator leverage</h3><p>Internal dashboards turned invisible backend state into tools support and product can actually use.</p></article>
         <article><strong>04</strong><h3>Learning reliability</h3><p>Runtime quality work targeted the moments students and teachers feel most directly.</p></article>
         <article><strong>05</strong><h3>AI ops maturity</h3><p>Prompt, QA, release, and AI-dev infrastructure work reduced future coordination cost.</p></article>
+        <article><strong>06</strong><h3>sigiq-dev platform</h3><p>Cloud desktops and sandboxed Claude Code runs became a repeatable team workflow instead of fragile one-off setup.</p></article>
       </div>
     </section>
 
@@ -353,6 +355,25 @@
               </div>
             </section>
             
+            <section class="slide bet" id="bet-6">
+              <div class="number">06</div>
+              <div class="bet-copy">
+                <p class="eyebrow">AI engineering platform</p>
+                <h2>Made cloud AI development repeatable for the team.</h2>
+                <p class="thesis">sigiq-dev turned Claude Code from a fragile VM habit into a company dev CLI: cloud desktops, file sync, secure credentials, VM lifecycle, isolated sandboxes, tunnels, logs, traces, workspace profiles, seeded data, and shared services.</p>
+                <div class="operating-points">
+                  <p>Treated developer productivity as infrastructure, not individual setup.</p><p>Closed rollout and stability gaps before expanding the platform surface.</p><p>Collapsed interactive desktops and sandboxed agent runs into one operating path.</p>
+                </div>
+              </div>
+              <div class="proof">
+                <h3>What changed</h3>
+                <p>The AI development workflow became an internal platform: repeatable setup, governed credentials, synchronized workspaces, isolated task execution, observability, and shared sandbox services.</p>
+                <div class="proof-lines">
+                  <span>Cloud desktops</span><span>Secure sync</span><span>Sandbox runs</span><span>Tracing + tunnels</span>
+                </div>
+              </div>
+            </section>
+            
 
     <section class="slide" id="timeline">
       <p class="eyebrow">Narrative arc</p>
@@ -365,9 +386,21 @@
         </article>
         
         <article>
-          <strong>Mar</strong>
-          <h3>Built AI-product operations</h3>
-          <p>Prompt infrastructure, org/category controls, completion analytics, immutable QA versions, and export/import moved AI work into governed operations.</p>
+          <strong>Mar 21</strong>
+          <h3>Made cloud AI development usable</h3>
+          <p>The first sigiq-dev layer gave engineers a repeatable way to set up a cloud dev desktop, sync work, connect securely, and run Claude Code with guardrails.</p>
+        </article>
+        
+        <article>
+          <strong>Mar 26</strong>
+          <h3>Hardened the dev desktop rollout</h3>
+          <p>The core CLI reached a clean done point: VM lifecycle, sync, setup, start/stop, auto-shutdown, identity, and stability issues were closed as one operating surface.</p>
+        </article>
+        
+        <article>
+          <strong>Apr 6-17</strong>
+          <h3>Expanded into sandboxed agent workloads</h3>
+          <p>sigiq-dev became the front door for isolated task runs, multi-sandbox workflows, tunnels, tracing, seeded data, and shared VM services.</p>
         </article>
         
         <article>
@@ -405,8 +438,8 @@
       <h2>The presentation is outcome-first by design.</h2>
       <div class="appendix">
         <div><strong>3</strong><p>months reviewed across product, platform, and operations work.</p></div>
-        <div><strong>4</strong><p>major product areas synthesized into a single narrative.</p></div>
-        <div><strong>5</strong><p>strategic lanes used to explain durable impact.</p></div>
+        <div><strong>5</strong><p>major product and engineering-platform areas synthesized into a single narrative.</p></div>
+        <div><strong>6</strong><p>strategic lanes used to explain durable impact.</p></div>
         <div><strong>0</strong><p>raw work-system links or identifiers exposed in the public page.</p></div>
       </div>
       <p class="identity-note">The underlying review included delivery records, review discussion, and planning context. This public version keeps the trail private and presents only synthesized outcomes.</p>
@@ -415,13 +448,13 @@
     <section class="slide closing" id="close">
       <p class="eyebrow">Closing readout</p>
       <h2>The story is strategic ownership, not just delivery volume.</h2>
-      <p class="lead">Over three months, the strongest impact was making important systems more shippable: LMS distribution became certifiable, security risk moved to closure, internal ops became visible, live learning became more resilient, and AI/product work got more structured.</p>
+      <p class="lead">Over three months, the strongest impact was making important systems more shippable: LMS distribution became certifiable, security risk moved to closure, internal ops became visible, live learning became more resilient, AI/product work got more structured, and cloud AI development became repeatable for the team.</p>
       <p class="identity-note">Updated on May 22, 2026. This standalone page shows synthesized outcomes only; raw work-system links and identifiers are intentionally omitted.</p>
     </section>
   </main>
   <div class="deck-controls" aria-label="slide controls">
     <button class="deck-button" id="prevSlide" type="button">Previous</button>
-    <span class="slide-count" id="slideCount">1 / 11</span>
+    <span class="slide-count" id="slideCount">1 / 12</span>
     <button class="deck-button is-primary" id="nextSlide" type="button">Next</button>
   </div>
   <script>
